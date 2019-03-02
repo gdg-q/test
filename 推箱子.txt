@@ -1,0 +1,195 @@
+//推箱子游戏
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+#include<ctype.h>
+
+//0为空地:  ，1为人物:♀，2为箱子□，3为目的地☆，4为墙■，5箱子到目的地:★
+//w为上，a为左，s为下，d为右
+//x,y为人所在目标
+int map[][10] = {
+					{4,4,4,4,4,4,4,4,4,4},
+					{4,0,0,0,0,0,0,0,3,4},
+					{4,1,0,2,2,2,0,0,3,4},
+					{4,0,0,0,0,0,0,0,3,4},
+					{4,4,4,4,4,4,4,4,4,4}
+				};
+int x,y;
+
+void draw(int a[][10]);
+void move(char q);
+void panduan(int a[][10]);
+
+int main(void)
+{	
+	
+	printf("推箱子标志表示说明：\n人物:♀，箱子:□，目的地:☆，墙:■\n\n\n");
+	printf("操作指令：\nw为上，a为左，s为下，d为右\n\n\n");
+	draw(map);
+	while(1)
+	{
+		move(tolower(getch()));
+		panduan(map);
+		system("cls");
+		draw(map);
+		if(map[1][8] == 5 && map[2][8] == 5 && map[3][8] == 5)
+			break;
+	}
+	printf("you are a winner\n");
+	return 0;
+
+}
+
+void draw(int a[][10])
+{
+	int i,j;
+	for(i = 0;i < 5;i++)
+	{
+		for(j = 0;j < 10;j++)
+		{
+			switch(a[i][j])
+			{	case 0:
+					printf("  ");
+					break;
+				case 1:
+					printf("♀");
+					x = i;
+					y = j;
+					break;
+				case 2:
+					printf("□");
+					break;
+				case 3:
+					printf("☆");
+					break;
+				case 4:
+					printf("■");
+					break;
+				case 5:
+					printf("★");
+					break;
+				default:
+					break;
+			}
+
+		}
+		printf("\n");
+	
+	}
+}
+
+
+void move(char q)
+{
+	switch(q)
+	{
+	case 'w':
+			map[x][y] = 0;
+			switch(map[x-1][y])
+			{
+			case 0:
+			case 3:
+				map[x-1][y] = 1;
+				break;
+			case 2:
+				if(map[x-2][y] == 0 || map[x-2][y] == 3 );
+				 {
+					 map[x-1][y] = 1;
+					 map[x-2][y] = 2;
+					 break;
+				 }
+				map[x][y] = 1;
+				break;
+			case 4:
+			case 5:
+				map[x][y] = 1;
+				break;
+			}
+	
+			break;
+		 
+	case 'a':
+			map[x][y] = 0;
+			switch(map[x][y-1])
+			{
+			case 0:
+			case 3:
+				map[x][y-1] = 1;
+				break;
+			case 2:
+				if(map[x][y-2] == 0|| map[x][y-2] == 3)
+				{ 
+					map[x][y-1] = 1;
+					map[x][y-2] = 2;
+					break;
+				}
+				map[x][y] = 1;
+				break;
+			case 4:
+			case 5:
+				map[x][y] = 1;
+				break;
+			}
+		break;
+	case 's':
+			map[x][y] = 0;
+			switch(map[x+1][y])
+			{
+			case 0:
+			case 3:
+				map[x+1][y] = 1;
+				break;
+			case 2:
+				if(map[x+2][y] == 0|| map[x+2][y] == 3)
+				{
+					map[x+1][y] = 1;
+					map[x+2][y] = 2;
+					break;
+				}
+				map[x][y] = 1;
+				break;
+			case 4:
+			case 5:
+				map[x][y] = 1;
+				break;
+			}
+		
+		break;
+	case 'd':
+		map[x][y] = 0;
+			switch(map[x][y+1])
+			{
+			case 0:
+			case 3:
+				map[x][y+1] = 1;
+				break;
+			case 2:
+				if(map[x][y+2] == 0|| map[x][y+2] == 3)
+				{
+					map[x][y+1] = 1;
+					map[x][y+2] = 2;
+					break;
+				}
+				map[x][y] = 1;
+				break;
+			case 4:
+			case 5:
+				map[x][y] = 1;
+				break;
+			}
+		break;
+	}
+
+}
+
+void panduan(int a[][10])
+{	
+	int i;
+	for(i = 1;i < 4;i++)
+		{
+			if(a[i][8] == 0)
+				a[i][8]=3;
+			if(a[i][8] == 2)
+				a[i][8]=5;
+		}
+}
