@@ -1,0 +1,18 @@
+//3.55过去1小时22分之后为什么时候
+
+#include<stdio.h>
+
+int main(void)
+{
+	int start_hou = 3,
+		start_min = 55,
+		ing_hou = 1,
+		ing_min = 22,
+		end_hou,end_min,
+		x,y;
+	x = (start_min+ing_min)/60;
+	y = (start_min+ing_min)%60;
+	printf("3.55过去1小时22分之后是%d:%d\n",start_hou+ing_hou+x,y);
+
+	return 0;
+}
