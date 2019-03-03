@@ -1,0 +1,79 @@
+//绘制简单的计算机
+//函数指针数组法
+
+#include<stdio.h>
+#include<conio.h>
+#include<stdlib.h>
+
+void Draw(void);
+float Add(float a,float b);
+float Sub(float a,float b);
+float Mul(float a,float b);
+float Div(float a,float b);
+int main(void)
+{	
+	int n = 1;
+	float s,i,o;
+	float (*p[5])(float,float) = {0,Add,Sub,Mul,Div};
+	char c;
+	while(n)
+	{
+		Draw();
+		printf("your  choose:");
+		scanf("%d",&n);
+		if(n > 0 && n <= 4)
+		{
+			printf("two numbers:");
+			scanf("%f%f",&i,&o);
+			s = p[n](i,o);
+			switch(n)
+			{
+				case 1:
+					c = '+';
+					break;
+				case 2:
+					c = '-';
+					break;
+				case 3:
+					c = '*';
+					break;
+				case 4:
+					c = '/';
+					break;
+			}
+			printf("%.2f%c%.2f = %.2f\n",i,c,o,s);
+			getch();
+			system("cls");
+		}
+	}
+	return 0;
+}
+
+void Draw(void)
+{
+	printf("*********************************\n");
+	printf("*\t 1.add   2.sub\t\t*\n");
+	printf("*\t 3.mul   4.div\t\t*\n");
+	printf("*\t  0.exit  \t\t*\n");
+	printf("*********************************\n");
+}
+
+float Add(float a,float b)
+{
+	return a+b;
+}
+
+float Sub(float a,float b)
+{
+	return a-b;
+}
+
+float Mul(float a,float b)
+{
+	return a*b;
+}
+
+float Div(float a,float b)
+{
+	return a/b;
+}
