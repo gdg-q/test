@@ -1,0 +1,130 @@
+//打印乘法表
+//绘制星图
+
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<conio.h>
+
+void Draw1(void);
+void Draw2(void);
+void Draw3(void);
+void Draw4(void);
+
+int main(void)
+{
+	Draw1();
+	getch();
+	system("cls");
+	Draw2();
+	getch();
+	system("cls");
+	Draw3();
+	getch();
+	system("cls");
+	Draw4();
+	getch();
+	system("cls");
+	return 0;
+}
+
+void Draw1(void)
+{
+	int i,j;
+	printf("Draw1:\n\n");
+	for(i = 1;i < 10;i++)
+		{
+			for(j = 1;j <= i;j++)
+				{
+					printf("%d*%d=%-3d",i,j,i*j);
+				}
+			printf("\n");
+		}
+}
+
+
+void Draw2(void)
+{
+	int i,j,n;
+	printf("Draw2:\n\n");
+	for(i = 0;i < 5;i++)
+		{	
+			for(n = 0;n <4-i;n++)
+			{
+				printf(" ");
+			}
+			for(j = 0;j <i+1;j++)
+			{
+				printf("* ");
+			}
+			printf("\n");
+		}
+	for(i = 0; i < 5-1;i++)
+	{
+		for(n = 0;n < i+1;n++)
+		{
+			printf(" ");
+		}
+		for(j = 0;j < (4-i);j++)
+		{
+			printf("* ");
+		}
+		printf("\n");
+	}
+}
+
+
+void Draw3(void)
+{
+	int i,j,k;
+	printf("Draw3:\n\n");
+	for(i = 0;i < 5;i++)
+	{	
+		for(j = 0;j < 4-i;j++)
+			printf(" ");
+		if(i == 0)
+			printf("*");
+		if(i > 0)
+		{
+			printf("*");
+			for(k = 0;k < 2*i-1;k++)
+				printf(" ");
+			printf("*");
+		}
+		printf("\n");
+	}
+	for(i = 0;i < 4;i++)
+	{
+		for(j = 0;j < i+1;j++)
+			printf(" ");
+		if(i == 3)
+			printf("*");
+		if(i < 3)
+		{	
+			printf("*");
+			for(k = 0;k < (5-2*i);k++)
+				printf(" ");
+				printf("*");
+		}
+		printf("\n");
+	}
+}
+
+
+void Draw4(void)
+{
+	int i,j,k;
+	printf("Draw4:\n\n");
+	printf("   * *       * *   \n");
+	printf("  * * *     * * *  \n");
+	printf(" * * * *   * * * * \n");
+	for(i = 0;i < 10;i++)
+	{
+		for(j = 0;j < i;j++)
+			printf(" ");
+		for(k = 0;k < (10-i);k++)
+			printf("* ");
+		printf("\n");
+	}
+
+}
