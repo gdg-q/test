@@ -1,0 +1,58 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+#define N  10
+void paxu(int x[]);
+
+
+struct num{
+	int a[N];
+	int b[N];
+}lol;
+
+int main(void)
+{	int i;
+	FILE *fp = NULL;
+	fp = fopen("f:\\test.txt","w");
+	if(fp == NULL)
+	{
+		return 0;
+	}
+	fprintf(fp,"%d\n",N);
+	srand((int)time(0));
+	for(i = 0;i < N;i++)
+	{
+		lol.a[i] = rand()%10;
+		lol.b[i] = lol.a[i];
+	}
+	paxu(lol.b);
+	for(i = 0 ; i < N;i++)
+	{
+		fprintf(fp,"%d\t",lol.a[i]);
+		printf("%d\t",lol.a[i]);
+	}
+	printf("\npaixu.......\n");
+	for(i = 0 ; i < N;i++)
+		printf("%d\t",lol.b[i]);
+	printf("\n");
+	fclose(fp);
+	return 0;
+}
+
+void paxu(int x[])
+{
+	int i,j,min,t;
+	for(i = 0;i < N-1;i++)
+		for(j = 0;j < N-i-1;j++)
+		{
+			if(x[j] > x[j+1])
+			{
+				t = x[j];
+				x[j] = x[j+1];
+				x[j+1] = t;
+			}
+		}
+}
+
+
